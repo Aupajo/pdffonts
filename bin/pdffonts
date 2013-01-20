@@ -18,12 +18,14 @@ files.each do |file|
   puts bold(file) if multiple_files
   
   # Find the strings in the PDF, look for a FontName descriptor
-  raw_list = `strings #{file} | grep FontName`
+  raw_list = `strings #{file.inspect} | grep FontName`
   
   # Extract the font names from each line
   font_names = raw_list.lines.map do |raw_line|
-    raw_line.match(/\/FontName \/[A-Z]{6}\+([^\/]*)\//)[1].strip
-  end.uniq
+    if match = raw_line.match(/\/FontName\s*\/[A-Z]{6}\+([^\/]*)\//)
+      match[1] && match[1].strip
+    end
+  end.uniq.compact
   
   font_names.sort.each do |font|
     puts blue(font)

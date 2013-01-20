@@ -1,0 +1,33 @@
+#!/usr/bin/env ruby
+require 'bundler/setup'
+require 'term/ansicolor'
+
+include Term::ANSIColor
+
+def usage
+  puts "Usage: #{__FILE__} PDF_FILE [PDF_FILE ...]"
+end
+
+files = ARGV.select { |f| File.file?(f) }
+
+abort usage if files.empty?
+
+multiple_files = files.length > 1
+
+files.each do |file|
+  puts bold(file) if multiple_files
+  
+  # Find the strings in the PDF, look for a FontName descriptor
+  raw_list = `strings #{file} | grep FontName`
+  
+  # Extract the font names from each line
+  font_names = raw_list.lines.map do |raw_line|
+    raw_line.match(/\/FontName \/[A-Z]{6}\+([^\/]*)\//)[1].strip
+  end.uniq
+  
+  font_names.sort.each do |font|
+    puts blue(font)
+  end
+  
+  puts if multiple_files
+end

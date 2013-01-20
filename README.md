@@ -8,13 +8,12 @@ A command-line tool to display fonts embedded inside PDF documents.
 
 ## Usage
 
-    $ pdffonts beautiful_type.pdf
+    $ pdffonts pdf-with-beautiful-type.pdf
     Avenir-Black
     Avenir-Medium
     Avenir-Roman
     AvenirNext-DemiBold
     GearedSlab-Extrabold
-    Impact
     Lavanderia-Sturdy
     LucidaGrande
     LucidaGrande-Bold

@@ -4,9 +4,9 @@ $LOAD_PATH.unshift(lib) unless $LOAD_PATH.include?(lib)
 
 Gem::Specification.new do |gem|
   gem.name          = "pdffonts"
-  gem.version       = "1.0.1"
+  gem.version       = "1.0.2"
   gem.authors       = ["Pete Nicholls"]
-  gem.email         = ["pete@metanation.com"]
+  gem.email         = ["aupajo@gmail.com"]
   gem.summary       = %q{A command-line tool to display fonts embedded inside PDF documents.}
   gem.homepage      = "http://github.com/Aupajo/pdffonts"
   gem.license       = "MIT"
